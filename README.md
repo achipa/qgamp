@@ -9,18 +9,25 @@ https://developers.google.com/analytics/devguides/collection/protocol/v1/
 
 QGAMP is a C++ class (API) that provides a convenient API for Qt Applications to be able to use
 Google Analytics interfaces to review timings, events and general user interaction patterns from
-both C++ and QML. It's cross platform, and able to report from all Qt-supported platforms (so far
-verified on Android, iOS and Linux).
+both C++ and QML. 
+
+It's cross platform, and able to report from all Qt-supported platforms (so far verified on 
+Android, iOS and Linux).
+
+The requests are issued asynchronously through a network request queue, so they would not interfere
+with normal operations of the application.
+
+If operated offline, QGAMP can maintain a timestamped buffer, and replay that buffer (with the
+correct timestamps) when the application is started later when connectivity is restored. Note that 
+the buffer size is limited and increasing it is not advised as Google Analytics will throttle 
+clients if too many requests are issued in short periods of time.
 
 Example:
 
 = C++
 
 	#include "googlemp.h"
-
-
-	QApplication app(argc, argv);
-	    
+	...
 	// QApplication level app name and version are used automatically in reports
 	qApp->setApplicationName("HelloQGAMP");
 	qApp->setApplicationVersion("1.0");
@@ -48,7 +55,7 @@ In main.cpp we need to initialize and register
 	int main(int argc, char *argv[])
 	{
 	    ...
-            qApp->setApplicationName("HelloQGAMP");
+	    qApp->setApplicationName("HelloQGAMP");
 	    qApp->setApplicationVersion("1.0");
 	    qApp->setOrganizationDomain("csipa.net");
 	    qApp->setOrganizationName("qgamp");

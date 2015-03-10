@@ -286,7 +286,7 @@ QString GoogleMP::divineUserAgent()
     ua = QString("Mozilla/5.0 (iPhone; U; CPU iPhone OS %0 like Mac OS X; en)").arg(QSysInfo::productVersion().replace('.',"_"));
 //    Mozilla/5.0 (iPhone; CPU iPhone OS 6_0 like Mac OS X) AppleWebKit/536.26 (KHTML, like Gecko) Version/6.0 Mobile/10A5376e Safari/8536.25
 #elif defined(Q_OS_LINUX)
-    ua = QString("Mozilla/5.0 (X11; %0; %1 %2) Qt/%3").arg(QSysInfo::productType(), QSysInfo::kernelType(), QSysInfo::currentCpuArchitecture(), qVersion());
+    ua = QString("Mozilla/5.0 (X11; %0; Linux %1) Qt/%2").arg(QSysInfo::productType(), QSysInfo::currentCpuArchitecture(), qVersion());
 //    ua = QString("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:24.0) Gecko/20100101 Firefox/24.0");
 //#elif defined(Q_OS_WIN)
 //    ua = QString("Mozilla/5.0 (Windows %0) Qt/%1").arg(QSysInfo::productType(), qVersion());
